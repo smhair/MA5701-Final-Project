@@ -1,0 +1,91 @@
+---
+title: "MA5701 COVID-19 FINAL PROJECT"
+author: "Ezequiel Carrillo, Evan Neibauer, Samantha Hair"
+date: "11/13/2021"
+output: html_document
+---
+
+```{r setup}
+library(dplyr)
+library(ggplot2)
+```
+
+
+```{r Load Data}
+covid_data <- read.csv('covid_states_data.csv') %>% 
+  filter(!state %in% c("MP", "DC", "PR"))
+```
+
+```{r Random Selection}
+set.seed(1234) 
+
+rand_sample <- sample(1:50, 20, replace = FALSE)
+```
+
+```{r Subset Data}
+sample_covid <- covid_data[rand_sample, ]
+```
+
+```{r Clean Data}
+sample_covid_clean <- sample_covid %>% 
+  select(-c(fips, country, county, level, lat, locationId, long, unused1, unused2, unused3, unused4, unused5, 
+            unused6, unused7, unused8, url))
+
+attach(sample_covid_clean)
+```
+
+```{r Write cleaned sample population .csv}
+write.csv(sample_covid_clean, 'sample_covid_data.csv')
+```
+
+```{r Histograms of each variable}
+sample_covid_clean %>% 
+  ggplot(aes(riskLevels.overall))+
+  geom_histogram(bins = 20) +
+  xlab("Overall Risk Level")+
+  ylab("Frequency")+
+  labs(title = "Histogram for Overall Risk Levels")
+
+sample_covid_clean %>% 
+  ggplot(aes(metrics.vaccinationsCompletedRatio))+
+  geom_histogram(bins = 20) +
+  xlab("Ratio of Vaccinations Completed")+
+  ylab("Frequency")+
+  labs(title = "Histogram for the Vaccinations Completed Ratio") 
+
+sample_covid_clean %>% 
+  ggplot(aes(actuals.hospitalBeds.capacity))+
+  geom_histogram(bins = 20) +
+  xlab("Hospital Bed Capacity")+
+  ylab("Frequency")+
+  labs(title = "Histogram for the Hospital Bed Capacity")
+
+sample_covid_clean %>% 
+  ggplot(aes(actuals.deaths))+
+  geom_histogram(bins = 20) +
+  xlab("Number of Deaths Due to Covid")+
+  ylab("Frequency")+
+  labs(title = "Histogram of Deaths Due to Covid")
+```
+
+```{r Bar Plot}
+riskLevels.overall <- factor(riskLevels.overall, levels=c('1', '2', '3', '4', '5'))
+
+sample_covid_clean %>% 
+  ggplot()+ 
+  geom_boxplot(aes(x = factor(riskLevels.overall), y = metrics.vaccinationsCompletedRatio))+
+  xlab("Overall Risk Level")+
+  ylab("Frequency")+
+  labs(title = "Relationship Between Vaccinations Completed and Risk Level", 
+       fill = "Level of Risk")
+```
+
+```{r Scatter Plot}
+sample_covid_clean %>% 
+  ggplot(aes(actuals.hospitalBeds.capacity, actuals.deaths))+
+  geom_point()+
+  xlab("Hospital Bed Capacity")+
+  ylab("Number of Deaths")+
+  labs(title = "Relationship Between the Hospital Bed Capacity and Number of Deaths")
+```
+
