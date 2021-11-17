@@ -89,3 +89,13 @@ sample_covid_clean %>%
   labs(title = "Relationship Between the Hospital Bed Capacity and Number of Deaths")
 ```
 
+```{r QQ Plots}
+qqnorm(actuals.hospitalBeds.capacity, main='Hospital Bed Capacity QQ Plot', xlab='Z-Value', ylab='Variable X-Value')
+qqline(actuals.hospitalBeds.capacity)
+
+qqnorm(actuals.deaths, main='Total Covid Deaths QQ Plot', xlab='Z-Value', ylab='Variable X-Value')
+qqline(actuals.deaths)
+
+qqnorm(metrics.vaccinationsCompletedRatio, main='Vaccination Ratio QQ Plot', xlab='Z-Value', ylab='Variable X-Value')
+qqline(metrics.vaccinationsCompletedRatio)
+```
