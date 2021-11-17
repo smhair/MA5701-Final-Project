@@ -102,8 +102,12 @@ qqline(metrics.vaccinationsCompletedRatio)
 
 ```{r Shapiro Tests for Normality}
 shapiro.test(actuals.hospitalBeds.capacity)
+#actual.hospitalBeds.capacity p_value < .05, So, we can reject H0;normality and accept HA; non-normal distribution
 
 shapiro.test(actuals.deaths)
+#actuals.deaths p_value < .05, So, we can reject H0;normality and accept HA; non-normal distribution
 
 shapiro.test(metrics.vaccinationsCompletedRatio)
+#metrics.vaccinationsCompletedRatio p_value > .05, So we can fail to reject H0; normal distribution
+
 ```
