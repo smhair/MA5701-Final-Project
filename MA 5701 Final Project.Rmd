@@ -87,6 +87,8 @@ sample_covid_clean %>%
   xlab("Hospital Bed Capacity")+
   ylab("Number of Deaths")+
   labs(title = "Relationship Between the Hospital Bed Capacity and Number of Deaths")
+    print("correlation coefficient between actuals.hospitalBeds.capacity and actuals.deaths:");
+    print(cor(actuals.hospitalBeds.capacity, actuals.deaths)) 
 ```
 
 ```{r QQ Plots}
