@@ -82,7 +82,7 @@ sample_covid_clean %>%
 
 ```{r Scatter Plot}
 sample_covid_clean %>% 
-  ggplot(aes(actuals.hospitalBeds.capacity, actuals.deaths))+
+  ggplot(aes(actuals.hospitalBeds.capacity, actuals.deaths, col='Red'))+
   geom_point()+
   xlab("Hospital Bed Capacity")+
   ylab("Number of Deaths")+
