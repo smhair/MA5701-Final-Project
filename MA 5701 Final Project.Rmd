@@ -99,3 +99,11 @@ qqline(actuals.deaths)
 qqnorm(metrics.vaccinationsCompletedRatio, main='Vaccination Ratio QQ Plot', xlab='Z-Value', ylab='Variable X-Value')
 qqline(metrics.vaccinationsCompletedRatio)
 ```
+
+```{r Shapiro Tests for Normality}
+shapiro.test(actuals.hospitalBeds.capacity)
+
+shapiro.test(actuals.deaths)
+
+shapiro.test(metrics.vaccinationsCompletedRatio)
+```
