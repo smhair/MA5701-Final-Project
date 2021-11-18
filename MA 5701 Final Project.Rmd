@@ -38,6 +38,11 @@ attach(sample_covid_clean)
 write.csv(sample_covid_clean, 'sample_covid_data.csv')
 ```
 
+```{r Display Data Sample Structure }
+str(sample_covid_clean)
+
+```
+
 ```{r Histograms of each variable}
 sample_covid_clean %>% 
   ggplot(aes(riskLevels.overall))+
