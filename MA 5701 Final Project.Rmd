@@ -97,13 +97,13 @@ sample_covid_clean %>%
 ```
 
 ```{r QQ Plots}
-qqnorm(actuals.hospitalBeds.capacity, main='Hospital Bed Capacity QQ Plot', xlab='Z-Value', ylab='Variable X-Value', col='Blue')
+qqnorm(actuals.hospitalBeds.capacity, main='Hospital Bed Capacity QQ Plot', xlab='Z-Value', ylab='Bed Capacity', col='Blue')
 qqline(actuals.hospitalBeds.capacity)
 
-qqnorm(actuals.deaths, main='Total Covid Deaths QQ Plot', xlab='Z-Value', ylab='Variable X-Value',  col='Blue')
+qqnorm(actuals.deaths, main='Total Covid Deaths QQ Plot', xlab='Z-Value', ylab='Deaths',  col='Blue')
 qqline(actuals.deaths)
 
-qqnorm(metrics.vaccinationsCompletedRatio, main='Vaccination Ratio QQ Plot', xlab='Z-Value', ylab='Variable X-Value',  col='Blue')
+qqnorm(metrics.vaccinationsCompletedRatio, main='Vaccination Ratio QQ Plot', xlab='Z-Value', ylab='Vaccination Ratio',  col='Blue')
 qqline(metrics.vaccinationsCompletedRatio)
 ```
 
