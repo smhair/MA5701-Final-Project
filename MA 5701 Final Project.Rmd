@@ -73,14 +73,14 @@ sample_covid_clean %>%
   labs(title = "Histogram of Deaths Due to Covid")
 ```
 
-```{r Bar Plot}
+```{r Box Plot}
 riskLevels.overall <- factor(riskLevels.overall, levels=c('1', '2', '3', '4', '5'))
 
 sample_covid_clean %>% 
   ggplot()+ 
   geom_boxplot(aes(x = factor(riskLevels.overall), y = metrics.vaccinationsCompletedRatio))+
   xlab("Overall Risk Level")+
-  ylab("Frequency")+
+  ylab("Vaccination Ratio")+
   labs(title = "Relationship Between Vaccinations Completed and Risk Level", 
        fill = "Level of Risk")
 ```
