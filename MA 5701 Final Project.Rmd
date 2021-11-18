@@ -108,12 +108,18 @@ qqline(metrics.vaccinationsCompletedRatio)
 ```
 
 ```{r Shapiro Tests for Normality}
+print('The actual.hospitalBeds.capacity variable is non-normally distributed, indicated by the QQ plot and the results of the Shapiro-Wilk test')
 shapiro.test(actuals.hospitalBeds.capacity)
 #actual.hospitalBeds.capacity p_value < .05, So, we can reject H0;normality and accept HA; non-normal distribution
+print('----------------------------------------------------------------------------------------------------------')
 
+
+print('The actuals.deaths variable is non-normally distributed, indicated by the QQ plot and the results of the Shapiro-Wilk test')
 shapiro.test(actuals.deaths)
 #actuals.deaths p_value < .05, So, we can reject H0;normality and accept HA; non-normal distribution
+print('----------------------------------------------------------------------------------------------------------')
 
+print('The metrics.vaccinationsCompletedRatio variable is normally distributed, indicated by the QQ plot and the results of the Shapiro-Wilk test')
 shapiro.test(metrics.vaccinationsCompletedRatio)
 #metrics.vaccinationsCompletedRatio p_value > .05, So we can fail to reject H0; normal distribution
 
