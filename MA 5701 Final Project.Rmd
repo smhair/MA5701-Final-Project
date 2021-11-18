@@ -122,5 +122,21 @@ print('-------------------------------------------------------------------------
 print('The metrics.vaccinationsCompletedRatio variable is normally distributed, indicated by the QQ plot and the results of the Shapiro-Wilk test')
 shapiro.test(metrics.vaccinationsCompletedRatio)
 #metrics.vaccinationsCompletedRatio p_value > .05, So we can fail to reject H0; normal distribution
+```
 
+```{r Summary Statistics}
+writeLines('riskLevels.overall descriptive statistics:\n')
+summary(sample_covid_clean$riskLevels.overall)
+writeLines('------------------------------------------------------------------------------------------------------------\n')
+
+writeLines('metrics.vaccinationsCompletedRatio descriptive statistics:\n')
+summary(sample_covid_clean$metrics.vaccinationsCompletedRatio)
+writeLines('------------------------------------------------------------------------------------------------------------\n')
+
+writeLines('actuals.deaths descriptive statistics:\n')
+summary(sample_covid_clean$actuals.deaths)
+writeLines('------------------------------------------------------------------------------------------------------------\n')
+
+writeLines('actuals.hospitalBeds.capacity descriptive statistics:\n')
+summary(sample_covid_clean$actuals.hospitalBeds.capacity)
 ```
