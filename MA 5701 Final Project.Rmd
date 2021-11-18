@@ -43,31 +43,31 @@ str(sample_covid_clean)
 
 ```
 
-```{r Histograms of each variable}
+````{r Histograms of each variable}
 sample_covid_clean %>% 
   ggplot(aes(riskLevels.overall))+
-  geom_histogram(bins = 20) +
+  geom_histogram(bins = 20,col="Black") +
   xlab("Overall Risk Level")+
   ylab("Frequency")+
   labs(title = "Histogram for Overall Risk Levels")
 
 sample_covid_clean %>% 
   ggplot(aes(metrics.vaccinationsCompletedRatio))+
-  geom_histogram(bins = 20) +
+  geom_histogram(bins = 20,col="Black") +
   xlab("Ratio of Vaccinations Completed")+
   ylab("Frequency")+
   labs(title = "Histogram for the Vaccinations Completed Ratio") 
 
 sample_covid_clean %>% 
   ggplot(aes(actuals.hospitalBeds.capacity))+
-  geom_histogram(bins = 20) +
+  geom_histogram(bins = 20, col="Black") +
   xlab("Hospital Bed Capacity")+
   ylab("Frequency")+
   labs(title = "Histogram for the Hospital Bed Capacity")
 
 sample_covid_clean %>% 
   ggplot(aes(actuals.deaths))+
-  geom_histogram(bins = 20) +
+  geom_histogram(bins = 20, col="Black") +
   xlab("Number of Deaths Due to Covid")+
   ylab("Frequency")+
   labs(title = "Histogram of Deaths Due to Covid")
