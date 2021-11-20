@@ -78,7 +78,7 @@ riskLevels.overall <- factor(riskLevels.overall, levels=c('1', '2', '3', '4', '5
 
 sample_covid_clean %>% 
   ggplot()+ 
-  geom_boxplot(aes(x = factor(riskLevels.overall), y = metrics.vaccinationsCompletedRatio))+
+  geom_boxplot(aes(x = factor(riskLevels.overall), y = metrics.vaccinationsCompletedRatio,fill=riskLevels.overall))+
   xlab("Overall Risk Level")+
   ylab("Vaccination Ratio")+
   labs(title = "Relationship Between Vaccinations Completed and Risk Level", 
