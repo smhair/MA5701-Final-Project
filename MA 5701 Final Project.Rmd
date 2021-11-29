@@ -157,3 +157,24 @@ all_stats <- stat.desc(all_quantitative_variables)
 round(all_stats,1)
 ```
 
+```{r Simple Linear Regression}
+
+# Simple Linear Regression Model
+lm.model <- lm((actuals.deaths/population)~(actuals.hospitalBeds.capacity/population))
+
+# Check Assumptions
+res <- residuals(lm.model) #residuals
+fit <- fitted.values(lm.model) #fitted values
+qqnorm(res) #check for normality
+qqline(res)
+plot(res~fit) #check for homoscedasticity
+abline(h=0)
+boxplot(res)
+hist(res)
+plot((actuals.deaths/population)~(actuals.hospitalBeds.capacity/population)) #check if lm is appropriate
+
+# Check p-value for hypothesis test
+summary(lm.model)
+
+```
+
