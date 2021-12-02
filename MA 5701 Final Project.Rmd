@@ -202,5 +202,5 @@ boxplot(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall)
 
 t.test(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall, alt='t', conf.level=.95, var.equal=TRUE)
 #By the pooled Sample t-test, we retain H0: mu1=mu2 at the .95 confidence level
-aggregate(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall,FUN=mean)
+
 ```
