@@ -195,10 +195,10 @@ sample_ordered=sample_covid_clean[
   with(sample_covid_clean, order(riskLevels.overall)),
 ]
 sample_ordered
+sample_ordered$riskLevels.overall
+data = sample_ordered[sample_ordered$riskLevels.overall != c(1,5), ]
+data
+var.test(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall, ratio=1, alternative = "two.sided")
 
-dplyr::filter(riskLevels.overall == c('2','3'))
-
-var.test(metrics.vaccinationsCompletedRatio~riskLevels.overall, ratio=1, alternative = "two.sided")
-levels(riskLevels.overall)
 
 ```
