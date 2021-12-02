@@ -185,9 +185,7 @@ aggregate(metrics.vaccinationsCompletedRatio~riskLevels.overall, FUN=mean) #as w
 aggregate(metrics.vaccinationsCompletedRatio~riskLevels.overall, FUN=mean)[c(2,3),] #see avg vaccination ratio for risk levels 2,3 since these are the levels of interest
 aggregate(metrics.vaccinationsCompletedRatio~riskLevels.overall, FUN=sd)[c(2,3),]
 ```
-
-```{r Welch t-test}
-
+```{r F-test to check for difference in variance}
 #f-test to test for equal variances
 sample_count=count(sample_covid_clean)#check count
 sample_ordered=sample_covid_clean[
@@ -196,9 +194,11 @@ sample_ordered=sample_covid_clean[
 
 data = sample_ordered[sample_ordered$riskLevels.overall != c(1,5), ]
 var.test(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall, ratio=1, alternative = "two.sided")
-#the variances are not equal, hence we will use the welch t-test for testing the differnece in means of both vaccination ratio between risk levels 2 & 3
+#the variances are roughly equal by teh f-test, hence we will use the pooled t-test for testing the differnece in means of both vaccination ratio between risk levels 2 & 3
+```
+```{r Pooled t-test}
 
-t.test(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall, alt='t', conf.level=.95)
-#By the Welch Two Sample t-test, we can reject H0: mu1=mu2
-
+t.test(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall, alt='t', conf.level=.95, var.equal=TRUE)
+#By the pooled Sample t-test, we retain H0: mu1=mu2
+aggregate(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall,FUN=mean)
 ```
