@@ -186,19 +186,19 @@ aggregate(metrics.vaccinationsCompletedRatio~riskLevels.overall, FUN=mean)[c(2,3
 aggregate(metrics.vaccinationsCompletedRatio~riskLevels.overall, FUN=sd)[c(2,3),]
 ```
 
-```{r paired t test}
-
+```{r Welch t-test}
 
 #f-test to test for equal variances
-count(sample_covid_clean)#check count
+sample_count=count(sample_covid_clean)#check count
 sample_ordered=sample_covid_clean[
   with(sample_covid_clean, order(riskLevels.overall)),
 ]
-sample_ordered
-sample_ordered$riskLevels.overall
-data = sample_ordered[sample_ordered$riskLevels.overall != c(1,5), ]
-data
-var.test(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall, ratio=1, alternative = "two.sided")
 
+data = sample_ordered[sample_ordered$riskLevels.overall != c(1,5), ]
+var.test(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall, ratio=1, alternative = "two.sided")
+#the variances are not equal, hence we will use the welch t-test for testing the differnece in means of both vaccination ratio between risk levels 2 & 3
+
+t.test(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall, alt='t', conf.level=.95)
+#By the Welch Two Sample t-test, we can reject H0: mu1=mu2
 
 ```
