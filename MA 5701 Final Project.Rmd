@@ -178,3 +178,27 @@ summary(lm.model)
 
 ```
 
+```{r ANOVA check, aggregate functions on variables of interest}
+boxplot(metrics.vaccinationsCompletedRatio~riskLevels.overall) # once again check box plots for a rough view of each risk level and its comparative completed vacciantion ratio
+#Since only levels 2 & 3 have sufficient data points we will not use ANOVA
+aggregate(metrics.vaccinationsCompletedRatio~riskLevels.overall, FUN=mean) #as we get a higher risk level, the ratio of vaccinated goes down
+aggregate(metrics.vaccinationsCompletedRatio~riskLevels.overall, FUN=mean)[c(2,3),] #see avg vaccination ratio for risk levels 2,3 since these are the levels of interest
+aggregate(metrics.vaccinationsCompletedRatio~riskLevels.overall, FUN=sd)[c(2,3),]
+```
+
+```{r paired t test}
+
+
+#f-test to test for equal variances
+count(sample_covid_clean)#check count
+sample_ordered=sample_covid_clean[
+  with(sample_covid_clean, order(riskLevels.overall)),
+]
+sample_ordered
+
+dplyr::filter(riskLevels.overall == c('2','3'))
+
+var.test(metrics.vaccinationsCompletedRatio~riskLevels.overall, ratio=1, alternative = "two.sided")
+levels(riskLevels.overall)
+
+```
