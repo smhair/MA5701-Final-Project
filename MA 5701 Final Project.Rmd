@@ -43,7 +43,7 @@ str(sample_covid_clean)
 
 ```
 
-````{r Histograms of each variable}
+```{r Histograms of each variable}
 sample_covid_clean %>% 
   ggplot(aes(riskLevels.overall))+
   geom_histogram(bins = 20,col="Black") +
