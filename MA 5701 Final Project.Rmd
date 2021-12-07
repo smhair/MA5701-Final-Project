@@ -215,7 +215,7 @@ print('Non parametric test to check H0: population medians are equal. against HA
 install.packages('MASS')
 library('MASS') # Load MASS for the birthwt data set
 
-# Use smoke as the faceting variable
+# Use risk level as the faceting variable
 ggplot(covid_data, aes(x = metrics.vaccinationsCompletedRatio)) +
   geom_histogram(fill = "white", colour = "black") +
   facet_grid(riskLevels.overall ~ .)
