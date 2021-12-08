@@ -213,7 +213,7 @@ print('Non parametric test to check H0: population medians are equal. against HA
 #3)Independent random samples for the k groups  -Satisfied via our sampling scheme
 #4)All k groups have the same "shape" -NOT satisfied
 install.packages('MASS')
-library('MASS') # Load MASS for the birthwt data set
+library('MASS') 
 
 # Use risk level as the faceting variable
 ggplot(covid_data, aes(x = metrics.vaccinationsCompletedRatio)) +
