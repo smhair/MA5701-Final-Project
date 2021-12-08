@@ -204,3 +204,26 @@ t.test(data$metrics.vaccinationsCompletedRatio~data$riskLevels.overall, alt='t',
 #By the pooled Sample t-test, we retain H0: mu1=mu2 at the .95 confidence level
 
 ```
+```{r Kruskall Wallis test on risk levels}
+print('Non parametric test to check H0: population medians are equal. against HA: population medians are not equal.')
+
+#assumptions:
+#1) One independent variable with 2 or more levels -Satisfied (risk levels is ordinal and has 5 levels)
+#2) Ordinal or ratio scale for dependent variable -Satisfied (vacination ratio is numeric ratio)
+#3)Independent random samples for the k groups  -Satisfied via our sampling scheme
+#4)All k groups have the same "shape" -NOT satisfied
+install.packages('MASS')
+library('MASS') 
+
+# Use risk level as the faceting variable
+ggplot(covid_data, aes(x = metrics.vaccinationsCompletedRatio)) +
+  geom_histogram(fill = "white", colour = "black") +
+  facet_grid(riskLevels.overall ~ .)
+ 
+writeLines('all k groups do not share the same dsitribution shape, mainly due to a lack of data points in levels other than 2 & 3. Even though we are not testing if the k groups have the same shape, by the non parametric Kruskal Wallis test we fails to reject H0: there is some difference between the vaccination ratios for states with different risk levels')
+
+kruskal.test(metrics.vaccinationsCompletedRatio~riskLevels.overall,data = covid_data)
+#Results: Retain H0: There is no difference in median vaccionation ratio between states with different risk levels. p=0.6934
+
+
+```
